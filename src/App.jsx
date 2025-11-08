@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path='' Component={MainLayout} />
+      <Route path='*' Component={MainLayout} />
       <Route path='auth/*' Component={AuthLayout} />
     </Routes>
     </>

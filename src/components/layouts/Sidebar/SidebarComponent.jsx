@@ -4,21 +4,46 @@ import { GiClothes } from "react-icons/gi";
 import { FaCartArrowDown } from "react-icons/fa";
 
 import MenuItemComponent from "./MenuItemComponent";
+import { useEffect, useState } from "react";
 
 
-const SidebarComponent = () => {
+const SidebarComponent = ({isSidebarCollapsed}) => {
+
+    const [menus, setMenus] = useState([
+        {
+            path: "/dashboard",
+            icon: <MdDashboardCustomize />,
+            menuName: "Dashboard"
+        },
+        {
+            path: "/product",
+            icon: <GiClothes />,
+            menuName: "Product"
+        },
+        {
+            path: "/cart",
+            icon: <FaCartArrowDown />,
+            menuName: "Cart"
+        },
+    ]);
+
+    useEffect(()=>{
+        
+    }, [])
+
     return <>
-        <div className="w-64 h-full bg-[#ecf0f1]">
+        <div style={{
+            width: isSidebarCollapsed?"60px":"200px"
+        }} className="h-full bg-[#ecf0f1]">
             <div className="h-14 flex justify-center items-center">
-                <h2 className="text-center text-2xl text-[#1abc9c]">Admin Lite</h2>
+                <h2 className="text-center text-2xl text-[#1abc9c]"> {isSidebarCollapsed?"A":"Admin Lite"} </h2>
             </div>
             <hr />  
             <div className="max-h-[92vh] overflow-auto">
-                <MenuItemComponent Icon={<MdDashboardCustomize />} menuName="Dashboard" active={true} />
-                <MenuItemComponent Icon={<GiClothes />} menuName="Product" />
-                <MenuItemComponent Icon={<FaCartArrowDown />} menuName="Carts" />
-                <MenuItemComponent Icon={<FaCartArrowDown />} menuName="Carts" />
-                <MenuItemComponent Icon={<FaCartArrowDown />} menuName="Carts" />
+                {menus?.map((menuItem)=>{
+                    return <MenuItemComponent isSidebarCollapsed={isSidebarCollapsed} path={menuItem?.path} Icon={menuItem?.icon} menuName={menuItem?.menuName}/>
+                })}
+                
             </div>
 
         </div>
