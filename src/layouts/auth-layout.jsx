@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 const AuthLayout = ()=>{
     return <>
     <Routes>
-        <Route path="login" element={<>It's a login page</>} />
+        <Route path="login" element={<>It's a practice page</>} />
     </Routes>
     </>
 }
